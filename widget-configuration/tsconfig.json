@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "pretty": true,
+    "typeRoots": ["./node_modules/@types"],
+    "lib": ["esnext"],
+    "target": "es5",
+    "outDir": "lib",
+    "declaration": true
+  }
+}

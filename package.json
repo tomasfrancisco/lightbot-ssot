@@ -1,0 +1,14 @@
+{
+  "name": "lightbot",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "link-browser-storage": "cd browser-storage && yarn link && yarn install",
+    "link-types": "cd types && yarn link && yarn install",
+    "link-widget-configuration": "cd widget-configuration && yarn link && yarn install",
+    "link-packages": "yarn link-browser-storage && yarn link-types && yarn link-widget-configuration",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

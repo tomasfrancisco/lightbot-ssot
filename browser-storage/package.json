@@ -1,0 +1,23 @@
+{
+  "name": "@lightbot/browser-storage",
+  "version": "1.0.0",
+  "description": "Browser Storage API with support for cookies, local storage and session storage.",
+  "main": "lib/index.js",
+  "scripts": {
+    "postinstall": "yarn run build",
+    "build": "tsc --diagnostics",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "**/*.d.ts",
+    "**/*.js",
+    "tsconfig.json"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/js-cookie": "^2.2.0",
+    "js-cookie": "^2.2.0",
+    "typescript": "^3.0.3"
+  }
+}

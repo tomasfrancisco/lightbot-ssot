@@ -1,0 +1,23 @@
+{
+  "name": "@lightbot/types",
+  "version": "1.0.0",
+  "description": "## Index",
+  "main": "lib/index.js",
+  "scripts": {
+    "postinstall": "npm run build",
+    "build": "tsc --diagnostics",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "**/*.d.ts",
+    "**/*.js",
+    "tsconfig.json"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/joi": "^13.4.4",
+    "joi": "^13.6.0",
+    "typescript": "^3.0.3"
+  }
+}
