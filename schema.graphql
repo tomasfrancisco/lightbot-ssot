@@ -1,0 +1,209 @@
+scalar JSON
+
+enum ActionType {
+  CREATE
+  UPDATE
+  DELETE
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Mutation {
+  _dummy: Boolean
+
+  createIntent(input: CreateIntent!): Intent
+  updateIntent(input: UpdateIntent!): Intent
+  deleteIntent(input: DeleteIntent!): Intent
+
+  updateWidgetData(input: UpdateWidgetData!): AgentData
+  moveUnknownTriggersToIntent(input: MoveUnknownTriggersToIntentDataInput!): Intent
+  createIntentWithUnknownTriggers(input: CreateIntentWithUnknownTriggers!): Intent
+  deleteUnknownTriggers(input: DeleteUnknownTriggers!): UnknownTrigger
+
+  createDictionary(input: CreateDictionaryData!): Dictionary
+  batchDictionary(input: BatchDictionaryData!): Dictionary
+  deleteDictionary(input: DeleteDictionaryData!): Dictionary
+}
+
+type Query {
+  _dummy: Boolean
+
+  me: User
+
+  intents(where: searchIntent): [Intent!]!
+  findIntentsByExpression(input: IntentExpression!): [Intent!]!
+
+  agents: [Agent!]!
+  findAgent(input: AgentID!): Agent!
+
+  dictionaries: [Dictionary!]!
+  dictionary(where: searchSingleDictionary!): Dictionary
+}
+
+type User  {
+  id: Int!
+}
+
+enum IntentTriggerType {
+  PLAIN
+  COMBINATION
+}
+
+type Intent {
+  id: Int!
+  name: String!
+  parentId: Int
+  isTopLevel: Boolean!
+  isFallback: Boolean!
+  isWelcome: Boolean!
+  children: [Intent!]!
+  triggers(where: searchIntentTrigger): [IntentTrigger!]!
+  outputs: [JSON!]!
+}
+
+type IntentTrigger {
+  id: Int!
+  type: String!
+  value: [String!]!
+}
+
+input IntentExpression {
+  intentExpression: String
+  agentId: Int
+  isTopLevel: Boolean
+}
+
+input searchIntent {
+  id: Int
+  agentId: Int
+  isTopLevel: Boolean
+}
+
+input searchIntentTrigger {
+  id: Int
+  value: String
+  type: String
+}
+
+input CreateIntent {
+  agentId: Int!
+  name: String!
+  parentId: Int
+  triggers: [CreateIntentTriggerDataInput!]!
+  outputs: [JSON!]!
+}
+
+input CreateIntentTriggerDataInput {
+  type: IntentTriggerType!
+  value: [String!]!
+}
+
+input UpdateIntent {
+  id: Int!
+  name: String
+  isTopLevel: Boolean
+  parentId: Int
+  triggers: [IntentTriggerDataInput!]
+  outputs: [JSON!]
+}
+
+input IntentTriggerDataInput {
+  id: Int
+  type: IntentTriggerType
+  value: [String!]
+  actionType: ActionType!
+}
+
+input DeleteIntent {
+  id: Int!
+  withChildren: Boolean!
+}
+
+type Agent {
+  id: Int!
+  name: String!
+  data: AgentData
+  unknownTriggers: [UnknownTrigger!]!
+  unknownTriggersCount: Int!
+  deploy: Agent
+}
+
+type AgentData {
+  widgetInputPlaceholder: String
+  widgetTeaser: String
+  widgetHotspotIcon: String
+  widgetThemeData: JSON
+}
+
+input UpdateWidgetData {
+  agentId: Int!
+  widgetInputPlaceholder: String!
+  widgetTeaser: String!
+  widgetHotspotIcon: String!
+  widgetThemeData: String!
+}
+
+type UnknownTrigger {
+  id: Int!
+  createdAt: Int!
+  value: String
+}
+
+input AgentID {
+  agentId: Int!
+}
+
+input MoveUnknownTriggersToIntentDataInput {
+  agentId: Int!
+  unknownTriggerIds: [Int!]!
+  intentId: Int!
+}
+
+input CreateIntentWithUnknownTriggers {
+  agentId: Int!
+  unknownTriggers: [Int!]!
+  intentName: String!
+}
+
+input DeleteUnknownTriggers {
+  unknownTriggerIds: [Int!]!
+  agentId: Int!
+}
+
+type Dictionary {
+  id: Int!
+  name: String
+  values: [DictionaryValue!]!
+}
+
+type DictionaryValue {
+  id: Int!
+  value: String
+}
+
+input CreateDictionaryData {
+  name: String!
+}
+
+input BatchDictionaryData {
+  id: Int!
+  name: String
+  values: [DictionaryValueData!]!
+}
+
+input DictionaryValueData {
+  actionType: ActionType!
+  id: Int
+  value: String
+}
+
+input DeleteDictionaryData {
+  id: Int!
+}
+
+input searchSingleDictionary {
+  id: Int!
+}
