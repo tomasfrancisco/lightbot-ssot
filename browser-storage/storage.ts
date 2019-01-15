@@ -78,6 +78,7 @@ export class Storage {
       this.localStorage.setItem(key, value);
       return true;
     } catch (err) {
+      // tslint:disable-next-line:no-console
       console.warn("Storage:setItem: LocalStorage is not available");
       this.isLocalStorageAvailable = false;
       return false;
@@ -91,6 +92,7 @@ export class Storage {
     try {
       return this.localStorage.getItem(key);
     } catch (err) {
+      // tslint:disable-next-line:no-console
       console.warn("Storage:getItem: LocalStorage is not available");
       this.isLocalStorageAvailable = false;
       return null;
@@ -109,6 +111,7 @@ export class Storage {
       }
       return false;
     } catch (err) {
+      // tslint:disable-next-line:no-console
       console.warn("Storage:removeItem: LocalStorage is not available");
       this.isLocalStorageAvailable = false;
       return false;
@@ -123,7 +126,7 @@ export class Storage {
       Cookie.set(key, value);
       return true;
     }
-
+    // tslint:disable-next-line:no-console
     console.warn("Storage:setItem: Cookies are not available");
     this.areCookiesAvailable = false;
     return false;
@@ -131,6 +134,7 @@ export class Storage {
 
   private getCookieItem(key: string): string | null | undefined {
     if (!this.areCookiesAvailable) {
+      // tslint:disable-next-line:no-console
       console.warn("Storage:getItem: Cookies are not available");
       return null;
     }
@@ -158,6 +162,7 @@ export class Storage {
       this.sessionStorage.setItem(key, value);
       return true;
     } catch (err) {
+      // tslint:disable-next-line:no-console
       console.warn("Storage:setItem: SessionStorage is not available");
       this.isSessionStorageAvailable = false;
       return false;
@@ -171,6 +176,7 @@ export class Storage {
     try {
       return this.sessionStorage.getItem(key);
     } catch (err) {
+      // tslint:disable-next-line:no-console
       console.warn("Storage:getItem: SessionStorage is not available");
       this.isSessionStorageAvailable = false;
       return null;
@@ -189,6 +195,7 @@ export class Storage {
       }
       return false;
     } catch (err) {
+      // tslint:disable-next-line:no-console
       console.warn("Storage:getItem: SessionStorage is not available");
       this.isSessionStorageAvailable = false;
       return false;

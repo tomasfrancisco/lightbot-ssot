@@ -4,7 +4,6 @@
   "description": "Browser Storage API with support for cookies, local storage and session storage.",
   "main": "lib/index.js",
   "scripts": {
-    "postinstall": "yarn run build",
     "build": "tsc --diagnostics",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
