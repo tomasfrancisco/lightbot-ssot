@@ -17,3 +17,7 @@ coverage
 
 # logging
 yarn-error.log
+
+# build
+lib
+build
