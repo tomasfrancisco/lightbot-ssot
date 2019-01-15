@@ -31,7 +31,7 @@ export type IntentJumpOutputType = {
 export interface IntentJumpsOutputType extends IntentOutputBaseType {
   value: {
     jumps: IntentJumpOutputType[];
-  }
+  };
 }
 export interface IntentDecoratedOutputType extends IntentOutputBaseType {
   value: {
