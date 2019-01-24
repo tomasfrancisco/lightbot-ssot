@@ -2,9 +2,13 @@
   "compilerOptions": {
     "pretty": true,
     "typeRoots": ["./node_modules/@types"],
-    "lib": ["esnext"],
+    "lib": ["esnext", "dom"],
     "target": "es5",
     "outDir": "lib",
     "declaration": true
-  }
+  },
+  "include": [
+    "browser-storage",
+    "widget-configuration"
+  ]
 }

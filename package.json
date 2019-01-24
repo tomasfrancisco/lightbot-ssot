@@ -10,5 +10,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^3.2.4"
+  },
+  "dependencies": {
+    "js-cookie": "^2.2.0"
+  }
 }
