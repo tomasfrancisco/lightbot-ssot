@@ -1,3 +1,5 @@
 .editorconfig
 browser-storage
 widget-configuration
+*.ts
+!*.d.ts

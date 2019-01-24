@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "pretty": true,
+    "rootDir": "./",
     "typeRoots": ["./node_modules/@types"],
     "lib": ["esnext", "dom"],
     "target": "es5",
@@ -9,6 +10,7 @@
   },
   "include": [
     "browser-storage",
-    "widget-configuration"
+    "widget-configuration",
+    "./index.ts"
   ]
 }
