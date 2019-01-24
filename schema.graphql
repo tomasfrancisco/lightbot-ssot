@@ -1,5 +1,16 @@
 scalar JSON
 
+enum ErrorCode {
+  INVALID_AUTH
+  INVALID_INTENT
+  INVALID_UNKNOWN_TRIGGER
+  INVALID_PARENT
+  INVALID_AGENT
+  INVALID_DICTIONARY
+  DICTIONARY_NAME
+  DEPLOY_AGENT,
+}
+
 enum ActionType {
   CREATE
   UPDATE
@@ -43,13 +54,8 @@ type Query {
   dictionary(where: searchSingleDictionary!): Dictionary
 }
 
-type User  {
+type User {
   id: Int!
-}
-
-enum IntentTriggerType {
-  PLAIN
-  COMBINATION
 }
 
 type Intent {
@@ -64,21 +70,26 @@ type Intent {
   outputs: [JSON!]!
 }
 
+enum IntentTriggerType {
+  PLAIN
+  COMBINATION
+}
+
 type IntentTrigger {
   id: Int!
-  type: String!
+  type: IntentTriggerType!
   value: [String!]!
 }
 
 input IntentExpression {
   intentExpression: String
-  agentId: Int
+  agentId: String
   isTopLevel: Boolean
 }
 
 input searchIntent {
   id: Int
-  agentId: Int
+  agentId: String
   isTopLevel: Boolean
 }
 
@@ -89,7 +100,7 @@ input searchIntentTrigger {
 }
 
 input CreateIntent {
-  agentId: Int!
+  agentId: String!
   name: String!
   parentId: Int
   triggers: [CreateIntentTriggerDataInput!]!
@@ -123,7 +134,7 @@ input DeleteIntent {
 }
 
 type Agent {
-  id: Int!
+  id: String!
   name: String!
   data: AgentData
   unknownTriggers: [UnknownTrigger!]!
@@ -139,7 +150,7 @@ type AgentData {
 }
 
 input UpdateWidgetData {
-  agentId: Int!
+  agentId: String!
   widgetInputPlaceholder: String!
   widgetTeaser: String!
   widgetHotspotIcon: String!
@@ -153,24 +164,24 @@ type UnknownTrigger {
 }
 
 input AgentID {
-  agentId: Int!
+  agentId: String!
 }
 
 input MoveUnknownTriggersToIntentDataInput {
-  agentId: Int!
+  agentId: String!
   unknownTriggerIds: [Int!]!
   intentId: Int!
 }
 
 input CreateIntentWithUnknownTriggers {
-  agentId: Int!
+  agentId: String!
   unknownTriggers: [Int!]!
   intentName: String!
 }
 
 input DeleteUnknownTriggers {
   unknownTriggerIds: [Int!]!
-  agentId: Int!
+  agentId: String!
 }
 
 type Dictionary {
